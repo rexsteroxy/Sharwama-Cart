@@ -34,8 +34,8 @@
                             <td>{{this.qty}}</td>
                             <td>${{this.price}}</td>
                             <td>
-                                <a href="#" class="btn btn-danger">Remove 1</a>
-                                <a href="#" class="btn btn-danger">Remove All</a>
+                                <a href="/reduce/{{this.item._id}}" class="btn btn-danger">Remove 1</a>
+                                <a href="/removeAll/{{this.item._id}}" class="btn btn-danger">Remove All</a>
                                      
                             </td> 
                           </tr>

@@ -27,16 +27,33 @@ router.get('/signup',function(req, res, next){
     res.render('user/signup',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0});
 });
 router.post('/signup',passport.authenticate('local.signup',{
-    successRedirect: '/user/profile',
+    //successRedirect: '/user/profile',
     failureRedirect: '/user/signup',
     failureFlash: true
-}));
+}),function(req,res,next){
+    if(req.session.oldUrl){
+        let oldLink = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldLink);
+        
+    }else{
+        res.redirect('/user/profile');
+    }
+});
 
 router.post('/signin',passport.authenticate('local.signin',{
-    successRedirect: '/user/profile',
+    //successRedirect: '/user/profile',
     failureRedirect: '/user/signin',
     failureFlash: true
-}));
+}),function(req,res,next){
+    if(req.session.oldUrl){
+        let oldLink = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldLink);
+    }else{
+        res.redirect('/user/profile');
+    }
+});
 router.get('/signin',function(req, res, next){
     let messages = req.flash('error');
     res.render('user/signin',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0});

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let Cart = require('../models/cart');
 let Product = require('../models/product');
+let Order = require('../models/order');
 
 
 /* GET home page. */
@@ -37,6 +38,23 @@ router.get('/add-to-cart/:id',function(req, res, next){
     
 });
 
+router.get('/reduce/:id',function(req,res,next){
+    let productId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart :  {});
+
+    cart.reduceByOne(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart');
+});
+router.get('/removeAll/:id',function(req,res,next){
+    let productId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart :  {});
+
+    cart.removeAll(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart');
+});
+
 //for displaying items in cart
 router.get('/shopping-cart/', function(req, res, next){
     
@@ -47,7 +65,7 @@ router.get('/shopping-cart/', function(req, res, next){
     res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
 }); 
 //for getting the check out page
-router.get('/checkout/', function(req, res, next){
+router.get('/checkout/', isLoggedIn,function(req, res, next){
     if(!req.session.cart){ 
         return res.redirect('/'); 
     }
@@ -58,7 +76,7 @@ router.get('/checkout/', function(req, res, next){
     
 });
 
-router.post('/charge',function(req,res,next){
+router.post('/charge',isLoggedIn,function(req,res,next){
     if(!req.session.cart){ 
         return res.redirect('/'); 
     }
@@ -83,13 +101,31 @@ stripe.charges.create({
         req.flash('error', err.message)
      return res.redirect('/checkout')
     }
+
+let order = new Order({
+    user: req.user,
+    cart: cart,
+    name: req.body.name,
+    address: req.body.address,
+    paymentId: charge.id
+});
+ order.save(function(err,result){
     req.flash('success','Payment Successful');
     req.session.cart = null;
     res.redirect('/');
+ });
+    
 
-  }
+  } 
 );
 });
 
 module.exports = router; 
 
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    req.session.oldUrl = req.url;
+    res.redirect('/user/signin');
+}
