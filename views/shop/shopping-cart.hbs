@@ -1,0 +1,66 @@
+{{# if products}}
+<section class="contact-area" id="contact">
+        <div class="contact-form-area section-padding gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="area-title text-center">
+                            <h3>DomNuel Shawarmer Spot</h3>
+                            <p>Below Are Your Shopping Details</p>
+                            <p> <strong>Click On The CheckOut Button to Pay!</strong>  </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+              
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <p class="btn btn-success">Total Price:<strong>${{ totalPrice }}</strong> </p>
+                <div class="row">
+                
+                </div>
+                {{# each products}}
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{ this.item.title}}</td>
+                            <td>{{this.qty}}</td>
+                            <td>${{this.price}}</td>
+                            <td>
+                                <a href="#" class="btn btn-danger">Remove 1</a>
+                                <a href="#" class="btn btn-danger">Remove All</a>
+                                     
+                            </td> 
+                          </tr>
+                        </tbody>
+                    </table>
+                    {{/each}}
+                  
+                  
+                  <hr>
+              
+              <div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+      <a href="/checkout" class="btn btn-success">CheckOut</a>
+    </div>       
+</div>
+{{else}}
+<div class="row">
+     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <button class="btn btn-success">No Shawarmer In The Cart</button>
+    </div>       
+</div>
+ {{/if}}
+
+              
+              </div>
+             </div>
+              </div>
+</section>

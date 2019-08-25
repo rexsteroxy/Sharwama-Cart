@@ -1,0 +1,37 @@
+<div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="area-title text-center">
+                            <h1>DomNuel Shawarmer Spot</h1>
+                            <p> <h3>We Have Varieties Of Different Types Of Shawarmer</h3>  </p>
+                            <p class="btn btn-success"> <strong>Click On Any To Add To Your Shopping Cart</strong>  </p>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
+                            <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+                        {{successMsg}}
+                             </div>
+                        </div>
+                        
+                    </div>
+                </div>
+{{# each products }}
+    <div class="row">
+        {{# each this}}
+        <div class="col-sm-6 col-md-4 ">
+            <div class="card" style="width: 18rem;">
+            <img src="{{ this.imagePath}}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{ this.title}}</h5>
+            <p class="card-text">{{ this.description}}</p>
+            <div>${{ this.price}}</div>
+            <a href="/add-to-cart/{{ this._id }}" class="btn btn-success">Click To Add To Cart</a>
+            </div>
+            </div>
+        </div>
+        {{/each}} 
+    </div>
+        
+{{/each}}
+
+
+
