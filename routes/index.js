@@ -112,7 +112,7 @@ let order = new Order({
  order.save(function(err,result){
     req.flash('success','Payment Successful');
     req.session.cart = null;
-    res.redirect('/');
+    res.redirect('/user/profile');
  });
     
 
