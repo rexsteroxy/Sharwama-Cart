@@ -24,7 +24,7 @@ const mongooseOptions = {  useNewUrlParser: true }
 mongoose.connect('mongodb+srv://rexsteroxy:amadiaustin.77@cluster0-ntpr6.gcp.mongodb.net/shopping', mongooseOptions, function(err) {
     if (err) {
         console.error('System could not connect to mongo server.');
-        console.log(err)     
+        console.log(err) ;    
     } else {
         console.log('System connected to mongo server.');
     } 
