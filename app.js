@@ -21,7 +21,8 @@ mongoose.Promise = Promise;
 mongoose.set('useCreateIndex', true);
 const mongooseOptions = {  useNewUrlParser: true }
 
-mongoose.connect('mongodb+srv://rexsteroxy:amadiaustin.77@cluster0-ntpr6.gcp.mongodb.net/shopping', mongooseOptions, function(err) {
+
+mongoose.connect('mongodb+srv://rexsteroxy:<password>@cluster0-ntpr6.gcp.mongodb.net/shopping?retryWrites=true&w=majority', mongooseOptions, function(err) {
     if (err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
