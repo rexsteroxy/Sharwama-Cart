@@ -14,15 +14,18 @@ const validator= require('express-validator');
 const MongoStore = require('connect-mongo')(session);
 
 const userRouter = require('./routes/user');
+const ENV = require('dotenv');
+ENV.config();
+//console.log(process.env.DATABASE_URL);
 const app = express();
 
 
-mongoose.Promise = Promise;
+mongoose.Promise = Promise; 
 mongoose.set('useCreateIndex', true);
 const mongooseOptions = {  useNewUrlParser: true }
 
 
-mongoose.connect('mongodb+srv://rexsteroxy:<password>@cluster0-ntpr6.gcp.mongodb.net/shopping?retryWrites=true&w=majority', mongooseOptions, function(err) {
+mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
     if (err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
