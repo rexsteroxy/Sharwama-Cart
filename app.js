@@ -33,6 +33,7 @@ mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
         console.log('System connected to mongo server.');
     } 
 });
+app.listen(process.env.PORT || 3000);
 require('./config/passport');
 // view engine setup
 app.engine('.hbs',expressHbs({defualtLayout:'layout',extname:'.hbs'}));
