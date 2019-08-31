@@ -8,9 +8,25 @@
 
 <script src="https://kit.fontawesome.com/a5370478c2.js"></script>
 
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.ss' />
     
   </head>
+   <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
   <body>
    
 <script
@@ -22,9 +38,14 @@ src="https://code.jquery.com/jquery-1.12.4.min.js"
     <div class="container">
        {{> header}}
     </div>
+      
     <div class="container">
        {{{body}}}
     </div>
+    <div class="container" style="background-color: greenyellow; color:honeydew">
+      {{> footer}}
+    </div>
+     
       
      
   
