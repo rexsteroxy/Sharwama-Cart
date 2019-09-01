@@ -21,7 +21,7 @@
                 <div class="row">
               
               <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
-                <p class="btn btn-success">Total Price:<strong>${{ this.cart.totalPrice }}</strong> </p>
+                <p class="btn btn-success">Total Price:<strong> <strike>N</strike> {{ this.cart.totalPrice }}</strong> </p>
                 <div class="row">
                 
                 </div>
@@ -38,7 +38,7 @@
                           <tr>
                             <td>{{ this.item.title}}</td>
                             <td>{{this.qty}}</td>
-                            <td>${{this.price}}</td>
+                            <td> <strike>N</strike> {{this.price}}</td>
                           </tr>
                         </tbody>
                     </table>
