@@ -4,7 +4,7 @@
         
                   
             <div class="panel panel-default">
-                <div class="panel-heading btn btn-success" >TotalPrice:${{ this.totalPrice}}</div>
+                <div class="panel-heading btn btn-success" >TotalPrice: <strike>N</strike> {{ this.totalPrice}}</div>
                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
                      <div id="charge-error" class="alert alert-danger" {{#if noErrors}}hidden{{/if}}>
                         {{errMsg}}
