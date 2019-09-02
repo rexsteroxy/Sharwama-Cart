@@ -1,6 +1,6 @@
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1>DomNuel Shawarmer Spot</h1>
-    <p> <h3>We Have Varieties Of Different Types Of Shawarmer</h3>  </p>
+  <h1>DomNuel Shawarma Spot</h1>
+    <p> <h3>We Have Varieties Of Different Types Of Shawarma</h3>  </p>
     <p class="btn btn-success"> <strong>Click On Any To Add To Your Shopping Cart</strong>  </p>
 </div>
 <div class="row">  
@@ -23,10 +23,14 @@
             <div> <strike>N</strike> {{ this.price}}</div>
             <a href="/add-to-cart/{{ this._id }}" class="btn btn-success">Click To Add To Cart</a>
             </div>
-            </div>
+            </div><br><br>
         </div>
         {{/each}} 
     </div>
         
 {{/each}}
+<a class="btn btn-outline-info" href="/shopping-cart/">
+        <i class="fas fa-shopping-cart">{{ session.cart.totalQty}}</i>
+        Shawarma:Click To Buy
+        </a>
    </div>

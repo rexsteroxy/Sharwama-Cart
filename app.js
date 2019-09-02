@@ -25,7 +25,7 @@ mongoose.set('useCreateIndex', true);
 const mongooseOptions = {  useNewUrlParser: true }
 
 
-mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
+mongoose.connect(process.env.LOCAL_DB_URL, mongooseOptions, function(err) {
     if (err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
