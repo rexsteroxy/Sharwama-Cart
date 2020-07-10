@@ -22,7 +22,7 @@ const app = express();
 
 mongoose.Promise = Promise; 
 mongoose.set('useCreateIndex', true);
-const mongooseOptions = {  useNewUrlParser: true }
+const mongooseOptions = {  useUnifiedTopology: true }
 
 
 mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
