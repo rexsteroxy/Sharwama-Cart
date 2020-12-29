@@ -1,0 +1,66 @@
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2"> 
+        
+                  
+            <div class="panel panel-default">
+                <div class="panel-heading btn btn-success" >TotalPrice: <strike>N</strike> {{ this.totalPrice}}</div>
+                 <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
+                     <div id="charge-error" class="alert alert-danger" {{#if noErrors}}hidden{{/if}}>
+                        {{errMsg}}
+                </div>
+                 </div>
+                
+                <p>Enter Your Payments Details Below</p>
+
+                <div class="panel-body">
+                    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+        <form action="/charge" method="post" id="payment-form">
+
+                         <div class="form-group">
+                            <label for="Name" class="col-md-4 control-label">Name</label>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" required autofocus >
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="Address" class="col-md-4 control-label">Address</label>
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" required autofocus >
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="firstName" class="col-md-4 control-label">Card Holder Name</label>
+                            <div class="col-md-6">
+                                <input id="card_holder_name" type="text" class="form-control" name="card_holder_name" required autofocus >
+                            </div>
+                        </div>
+                         <div class="form-row">
+                                <label for="card-element">
+                                Credit or debit card
+                                </label>
+                                <div  class="col-md-10" id="card-element">
+                                <!-- A Stripe Element will be inserted here. -->
+                                </div>
+
+                                <!-- Used to display form errors. -->
+                                <div  class="col-md-10" id="card-errors" role="alert"></div>
+                        </div>
+                           
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" style="margin-top:10px">
+                                    Make Payment 
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript" src="javascripts/checkout.js"></script>

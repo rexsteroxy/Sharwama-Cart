@@ -1,0 +1,24 @@
+
+
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
+  <h3 class="my-0 mr-md-auto " style="color:white">KSD</h3>
+  <nav class="my-2 my-md-0 mr-md-3 "> 
+   
+     {{# if isLogin }}
+    <a class="btn btn-success" href="/user/logout" style="margin-left: 55px;">SignOut</a>
+    <a class="btn btn-success" href="/user/profile " style="margin-left: 55px;"><i class="fas fa-user"></i>Dashboard</a>
+    {{else}}
+    <a class="btn btn-success" href="/user/signin" style="margin-right: 25px;"></i>SignIn</a>
+    <a class="btn btn-success" href="/user/signup" style="margin-right: 95px;">Signup</a>
+    {{/if}}
+     <a class="btn btn-outline-danger" href="/shopping-cart/" style="margin-left: 5px;">
+        <i class="fas fa-shopping-cart">{{ session.cart.totalQty}}</i>
+        Shawarma
+        </a>
+    </nav>
+  </nav>
+  <nav class="my-4 my-md-1 mr-md-6  fixed-top"> 
+ 
+</div>
+

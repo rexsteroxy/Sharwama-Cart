@@ -1,0 +1,75 @@
+{{# if products}}
+<section class="contact-area" id="contact">
+        <div class="contact-form-area section-padding gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="area-title text-center">
+                            <h3>Kenny Delivery Services</h3>
+                            <p>Below Are Your Shopping Details</p>
+                            <p> <strong>Click On The CheckOut Button to Pay!</strong>  </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="row">
+              
+              <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                <p class="btn btn-success">Total Price:<strong><strike>N</strike>{{ totalPrice }}</strong> </p>
+                </div>
+                </div>
+
+                <div class="container">
+                <div class="row">
+                
+                    {{# each products}}
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{ this.item.title}}</td>
+                            <td>{{this.qty}}</td>
+                            <td><strike>N</strike>{{this.price}}</td>
+                            <td>
+                                <a href="/reduce/{{this.item._id}}" class="btn btn-danger">Remove 1</a>
+                                <a href="/removeAll/{{this.item._id}}" class="btn btn-danger">Remove All</a>
+                                     
+                            </td> 
+                          </tr>
+                        </tbody>
+                    </table>
+                    {{/each}}
+                  
+                  </div>
+                  <hr>
+
+                </div>
+                
+              <div class="container">
+              <div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+      <a href="/checkout" class="btn btn-success">CheckOut</a>
+    </div>       
+</div>
+</div>
+{{else}}
+<div class="row">
+     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <button class="btn btn-success">No Shawarma In The Cart</button>
+    </div>       
+</div>
+ {{/if}}
+
+              
+              </div>
+             </div>
+              
+</section>

@@ -1,0 +1,37 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1>Kenny Delivery Services</h1>
+    <p> <h3>We Have Varieties Of Different Types Of Shawarma</h3>  </p>
+    <p class="btn btn-success"> <strong>Click On Any To Add To Your Shopping Cart</strong>  </p>
+</div>
+<div class="row">  
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" >
+                <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+            {{successMsg}}
+                  </div>
+            </div>
+   </div>
+   <div class="container">
+{{# each products }}
+    <div class="row">
+        {{# each this}}
+        <div class="col-sm-6 col-md-4 ">
+            <div class="card" style="width: 18rem;">
+            <img src="{{ this.imagePath}}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{ this.title}}</h5>
+            <p class="card-text">{{ this.description}}</p>
+            <div> <strike>N</strike> {{ this.price}}</div>
+            <a href="/add-to-cart/{{ this._id }}" class="btn btn-success">Click To Add To Cart</a>
+            </div>
+            </div><br><br>
+        </div>
+        {{/each}} 
+    </div>
+        
+{{/each}}
+<a class="btn btn-outline-info" href="/shopping-cart/">
+        <i class="fas fa-shopping-cart">{{ session.cart.totalQty}}</i>
+        Shawarma:Click To Buy
+        </a><br><br>
+
+   </div>
