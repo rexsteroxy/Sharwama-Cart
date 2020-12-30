@@ -35,11 +35,16 @@ mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function (err) {
     console.log("System connected to mongo server.");
   }
 });
+
+//server spinner
 app.listen(process.env.PORT || 8000);
+
+//passport configurations file require
 require("./config/passport");
+
+
 // view engine setup
 app.engine(".hbs", expressHbs({ defualtLayout: "layout", extname: ".hbs" }));
-// app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", ".hbs");
 
 app.use(logger("dev"));
@@ -61,12 +66,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public")));
 
+
+// setting up global variables
 app.use(function (req, res, next) {
   res.locals.isLogin = req.isAuthenticated();
   res.locals.session = req.session;
   next();
 });
 
+
+// app routes
 app.use("/user", userRouter);
 app.use("/", indexRouter);
 
