@@ -1,27 +1,44 @@
-var Product = require('../models/product');
-var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/shopping');
-var products = [
+let Product = require('../models/product');
+let mongoose = require('mongoose');
+
+
+const mongooseOptions = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  };
+  
+  mongoose.connect("mongodb://localhost:27017/shopping", mongooseOptions, function (err) {
+    if (err) {
+      console.error("System could not connect to mongo server.");
+      console.log(err);
+    } else {
+      console.log("System connected to mongo server.");
+    }
+  });
+
+let products = [
     new Product({
-    imagePath:"https://res.cloudinary.com/stero/image/upload/v1562689623/s4eck80gvopy1tyej4jo.jpg",
-    title: 'Rex Building',
-    description:'Estate Building with comfortable rooms',
-    price:5000
+    imagePath:"https://image.shutterstock.com/image-photo/shawarma-sauce-on-white-background-260nw-471071540.jpg",
+    title: 'Beef Shawarma',
+    description:'Very Yummy',
+    price:1000
 }),
 new Product({
-    imagePath:"https://res.cloudinary.com/stero/image/upload/v1562689623/s4eck80gvopy1tyej4jo.jpg",
-    title: 'Bungalow',
-    description:'Estate Building with comfortable rooms',
-    price:4000
+    imagePath:"http://cookingtheglobe.com/wp-content/uploads/2016/07/beef-shawarma.jpg",
+    title: 'Chicken Shawarma',
+    description:'Creamy chicken yummy',
+    price:1200
 }),
 new Product({
-    imagePath:"https://res.cloudinary.com/stero/image/upload/v1562689623/s4eck80gvopy1tyej4jo.jpg",
-    title: 'Flat Building',
-    description:'Estate Building with comfortable rooms',
-    price:15000
+    imagePath:"http://cookingtheglobe.com/wp-content/uploads/2016/07/beef-shawarma.jpg",
+    title: 'Mixed shawarma',
+    description:'chicken, vegitables creamy beef. Very Delicious',
+    price:1500
 }),
 ]
-var done = 0;
+let done = 0;
 
 
 for(let i=0; i<products.length;i++){
@@ -35,14 +52,3 @@ for(let i=0; i<products.length;i++){
 function exit(){
     mongoose.disconnect();
 }
-//creating database schema
-// var productone = Product({
-//     imagePath:"https://res.cloudinary.com/stero/image/upload/v1562689623/s4eck80gvopy1tyej4jo.jpg",
-//     title: 'Rex Building is one in town',
-//     description:'Buitiful House',
-//     price:4050
-// }).save(function(err){
-//     if(err) throw err;
-//     console.log('product saved');
-    
-// })

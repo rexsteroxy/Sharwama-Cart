@@ -1,17 +1,10 @@
-# Sharwama-Cart
-A Pizza and Sharwama shopping site built with Express.js and Node.js.
-Am still building the App
+# Sharwama-Order-App
+A Pizza and Sharwama order app built with Express.js and Node.js.
 
-192.168.43.10
-mongoose.Promise = Promise;
-mongoose.set('useCreateIndex', true);
-const mongooseOptions = {  useNewUrlParser: true }
 
-mongoose.connect('mongodb://localhost:27017/shopping', mongooseOptions, function(err) {
-    if (err) {
-        console.error('System could not connect to mongo server.')
-        console.log(err)     
-    } else {
-        console.log('System connected to mongo server.')
-    } 
-});
+This project is aimed to provide a customized solution for a
+quicker and more satisfying shawarma order and delivery 
+system under the digital business trend.
+I implemented it in such a way that customers can 
+view various shawarma categories and can place their order
+and as well make payment using their card details.

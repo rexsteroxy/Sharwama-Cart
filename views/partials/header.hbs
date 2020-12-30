@@ -6,7 +6,7 @@
   <nav class="my-2 my-md-0 mr-md-3 "> 
    
      {{# if isLogin }}
-    <a class="btn btn-success" href="/user/logout" style="margin-left: 55px;">SignOut</a>
+    <a class="btn btn-danger" href="/user/logout" style="margin-left: 55px;">SignOut</a>
     <a class="btn btn-success" href="/user/profile " style="margin-left: 55px;"><i class="fas fa-user"></i>Dashboard</a>
     {{else}}
     <a class="btn btn-success" href="/user/signin" style="margin-right: 25px;"></i>SignIn</a>
@@ -16,6 +16,7 @@
         <i class="fas fa-shopping-cart">{{ session.cart.totalQty}}</i>
         Shawarma
         </a>
+        <a  class="btn btn-success" href="/">Back To Shop</a>
     </nav>
   </nav>
   <nav class="my-4 my-md-1 mr-md-6  fixed-top"> 

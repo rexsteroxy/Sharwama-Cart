@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 let Cart = require('../models/cart');
 let Product = require('../models/product');
 let Order = require('../models/order');
@@ -7,6 +7,7 @@ let Order = require('../models/order');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
   //get data from mongodb and pass it to the view
   let successMsg = req.flash('success')[0];
   Product.find({},function(err,data){
@@ -16,9 +17,9 @@ router.get('/', function(req, res, next) {
       for (let i=0; i<data.length; i += chunkSize ) {
           productChunks.push(data.slice(i,i + chunkSize)); 
       }
-      res.render('shop/index', {title:"Node project deal", products:productChunks, 
+      res.render('shop/index', {title:"Shawarma Order App", products:productChunks, 
       successMsg: successMsg, noMessages: !successMsg });
-  })
+  }).lean()
 });
 //for adding items to cart
 router.get('/add-to-cart/:id',function(req, res, next){
@@ -84,11 +85,13 @@ let cart = new Cart(req.session.cart);
 
     // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-const stripe = require('stripe')('sk_test_8tpELYC75jD6QH4x0AEoPvQI00xyGqF3Ud');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 // Token is created using Checkout or Elements!
 // Get the payment token ID submitted by the form:
-const token = req.body.stripeToken; // Using Express
+const token = req.body.stripeToken;
+const chargeAmount = Math.round(cart.totalPrice / 480);
+console.log(chargeAmount);  // Using Express
 
 stripe.charges.create({
     amount: cart.totalPrice * 100,

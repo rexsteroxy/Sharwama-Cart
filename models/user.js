@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-var bcrypt = require('bcryptjs');
+let bcrypt = require('bcryptjs');
 
 let userSchema = new Schema({
     email:{type: String, required: true},

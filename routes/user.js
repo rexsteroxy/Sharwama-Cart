@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var csrf =  require('csurf');
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const csrf =  require('csurf');
+const passport = require('passport');
 let Cart = require('../models/cart');
-let Product = require('../models/product');
 let Order = require('../models/order');
 
 let csrfProtection = csrf(); 
@@ -24,7 +23,7 @@ router.get('/profile',isLoggedIn, function(req, res, next){
         });
         //console.log(orders);
         res.render('user/profile', { orders: orders,successMsg: successMsg, noMessages: !successMsg}); 
-    });
+    }).lean();
 
     
 });
