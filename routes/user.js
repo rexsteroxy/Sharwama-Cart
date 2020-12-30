@@ -1,46 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const csrf =  require('csurf');
 const passport = require('passport');
-let Cart = require('../models/cart');
-let Order = require('../models/order');
+const csrf =  require('csurf');
+const userController = require('../controllers/userController')
 
 let csrfProtection = csrf(); 
 router.use(csrfProtection);
 
+// get user dashboard with order history
+router.get('/profile',userController.isLoggedIn,userController.getUserDashBoard);
 
-router.get('/profile',isLoggedIn, function(req, res, next){
-    let successMsg = req.flash('success')[0];
-    Order.find({user: req.user},function(err, orders){
-        if(err){
-            res.write('Error!');
-        }
-        let cart;
-        orders.forEach(function(order){
-            cart= new Cart(order.cart);
-            order.items = cart.generateArray();
 
-        });
-        //console.log(orders);
-        res.render('user/profile', { orders: orders,successMsg: successMsg, noMessages: !successMsg}); 
-    }).lean();
-
-    
-});
-router.get('/logout',isLoggedIn,function(req, res, next){
+// log out the user
+router.get('/logout',userController.isLoggedIn,function(req, res, next){
     req.logout();
    res.redirect('/');
 });
+
+
 // checking where login is not needed
-router.use('/', isNotLoggedIn,function(req,res,next){
+router.use('/', userController.isNotLoggedIn,function(req,res,next){
    return next();
 });
 
 
-router.get('/signup',function(req, res, next){
-    let messages = req.flash('error');
-    res.render('user/signup',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0});
-});
+// get the signup page
+router.get('/signup',userController.getSignUpPage);
+
+
+// user signup functionality
 router.post('/signup',passport.authenticate('local.signup',{
     //successRedirect: '/user/profile',
     failureRedirect: '/user/signup',
@@ -56,6 +44,8 @@ router.post('/signup',passport.authenticate('local.signup',{
     }
 });
 
+
+//user sigin in functinality
 router.post('/signin',passport.authenticate('local.signin',{
     //successRedirect: '/user/profile',
     failureRedirect: '/user/signin',
@@ -69,22 +59,10 @@ router.post('/signin',passport.authenticate('local.signin',{
         res.redirect('/user/profile');
     }
 });
-router.get('/signin',function(req, res, next){
-    let messages = req.flash('error');
-    res.render('user/signin',{csrfToken: req.csrfToken(),messages: messages, hasErrors: messages.length > 0});
-});
+
+
+// get sign in page
+router.get('/signin',userController.getSignInPage);
 
 module.exports = router; 
 
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/');
-}
-function isNotLoggedIn(req,res,next){
-    if(!req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/');
-}
